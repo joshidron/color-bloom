@@ -1,0 +1,53 @@
+ body {
+      font-family: 'Noto Sans Gujarati', sans-serif;
+      background: linear-gradient(to top right, #fff7e6, #ffcc80);
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #ff7043;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .output-box {
+      padding: 20px;
+      font-size: 24px;
+      background: #fff3e0;
+      border: 2px solid #ffccbc;
+      border-radius: 10px;
+      text-align: center;
+      color: #bf360c;
+      margin-bottom: 30px;
+    }
+
+    .letters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+      gap: 15px;
+    }
+
+    .letter {
+      background: linear-gradient(145deg, #ffa726, #fb8c00);
+      color: white;
+      font-size: 26px;
+      border-radius: 12px;
+      padding: 15px 0;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    }
+
+    .letter:hover {
+      transform: scale(1.1);
+      background: linear-gradient(145deg, #fb8c00, #ef6c00);
+    }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learn English Alphabets</title>
+  <link rel="stylesheet" href="css/alphabet.css">
+  <link rel="stylesheet" href="css/elernnev.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+     <nav class="navbar">
+       <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+    <ul>
+      <li><a href="e-larning.html"><i class="fas fa-graduation-cap"></i>E-Learning</a></li>
+      <li><a href="kakko.html"><i class="fas fa-language"></i>Gujarati Kakko</a></li>
+      <li><a href="alphabet.html"><i class="fas fa-font"></i>Alphabet</a></li>
+      <li><a href="animal.html"><i class="fas fa-paw"></i>Animals</a></li>
+      <li><a href="counting.html"><i class="fas fa-list-ol"></i>Counting</a></li>
+    </ul>
+  </nav>
+
+  <div class="header">
+    <h1>Learn English Alphabets</h1>
+  </div>
+
+  <div class="main">
+    <div class="output-box" id="output">Click or Press Any Letter</div>
+    <div class="letters" id="letters"></div>
+  </div>
+
+  <script src="js/alphabet.js"></script>
+   <script>
+  function toggleMenu() {
+  const navMenu = document.querySelector('.navbar ul');
+  const hamburgerIcon = document.querySelector('.hamburger i');
+  
+  // Toggle menu visibility
+  navMenu.classList.toggle('show');
+  
+  // Change hamburger icon between bars and times (X)
+  if (navMenu.classList.contains('show')) {
+    hamburgerIcon.classList.remove('fa-bars');
+    hamburgerIcon.classList.add('fa-times');
+  } else {
+    hamburgerIcon.classList.remove('fa-times');
+    hamburgerIcon.classList.add('fa-bars');
+  }
+}
+
+// Close menu when clicking on a nav link
+document.querySelectorAll('.navbar ul li a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 768) { // Only for mobile view
+      const navMenu = document.querySelector('.navbar ul');
+      const hamburgerIcon = document.querySelector('.hamburger i');
+      
+      navMenu.classList.remove('show');
+      hamburgerIcon.classList.remove('fa-times');
+      hamburgerIcon.classList.add('fa-bars');
+    }
+  });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+  const navbar = document.querySelector('.navbar');
+  const hamburger = document.querySelector('.hamburger');
+  
+  if (window.innerWidth <= 768) { // Only for mobile view
+    if (!navbar.contains(event.target) && !hamburger.contains(event.target)) {
+      const navMenu = document.querySelector('.navbar ul');
+      const hamburgerIcon = document.querySelector('.hamburger i');
+      
+      navMenu.classList.remove('show');
+      hamburgerIcon.classList.remove('fa-times');
+      hamburgerIcon.classList.add('fa-bars');
+    }
+  }
+});
+  </script>
+</body>
+</html>
