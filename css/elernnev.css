@@ -16,6 +16,7 @@ body {
   padding: 14px 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   border-radius: 0 0 15px 15px;
+  position: relative;
 }
 
 /* Nav links styling */
@@ -82,7 +83,7 @@ body {
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 14px 20px;
   }
 
@@ -100,8 +101,8 @@ body {
 
   .hamburger {
     display: block;
-    align-self: flex-end;
-    margin-top: -10px;
+    margin: 0 auto; /* centers the hamburger */
+    margin-top: -5px;
   }
 
   .navbar li a {
