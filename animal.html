@@ -434,9 +434,8 @@
 </div>
 <!-- Hidden audio element -->
 <audio id="audio-player"></audio>
-
 <script>
-  const audio = document.getElementById("audio-player");w
+  const audio = document.getElementById("audio-player");
   let stopTimer;
   let currentlyPlaying = null;
 
@@ -452,7 +451,6 @@
     event.preventDefault();
     event.stopPropagation();
 
-    // If clicking the same sound that's currently playing, stop it
     if (currentlyPlaying === url) {
       audio.pause();
       audio.currentTime = 0;
@@ -461,14 +459,12 @@
       return;
     }
 
-    // Stop previous sound
     audio.pause();
     audio.currentTime = 0;
     clearTimeout(stopTimer);
     currentlyPlaying = url;
     audio.src = url;
 
-    // Play and limit duration
     audio.onloadedmetadata = () => {
       const duration = audio.duration;
 
@@ -504,74 +500,64 @@
     };
   }
 
-  // Add click handler to document to stop sounds when clicking elsewhere
+  // Add click handler to document to stop sounds and/or close nav when clicking outside
   document.addEventListener('click', function(event) {
-    // Check if the click is on any element that should NOT stop the sound
+    // Stop sound unless clicked on specific elements
     const shouldNotStop = event.target.closest('.sound-link') || 
                          event.target.closest('.image_container') ||
                          event.target.closest('.title') ||
                          event.target.closest('h2');
-    
-    // If the click is not on any of these elements, stop the sound
     if (!shouldNotStop) {
       audio.pause();
       audio.currentTime = 0;
       clearTimeout(stopTimer);
       currentlyPlaying = null;
     }
+
+    // Close navbar in mobile view if clicked outside
+    const navbar = document.querySelector('.navbar');
+    const hamburger = document.querySelector('.hamburger');
+
+    if (window.innerWidth <= 768) {
+      if (!navbar.contains(event.target) && !hamburger.contains(event.target)) {
+        const navMenu = document.querySelector('.navbar ul');
+        const hamburgerIcon = document.querySelector('.hamburger i');
+        navMenu.classList.remove('show');
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
+      }
+    }
+  });
+
+  // Toggle hamburger menu
+  function toggleMenu() {
+    const navMenu = document.querySelector('.navbar ul');
+    const hamburgerIcon = document.querySelector('.hamburger i');
+
+    navMenu.classList.toggle('show');
+
+    if (navMenu.classList.contains('show')) {
+      hamburgerIcon.classList.remove('fa-bars');
+      hamburgerIcon.classList.add('fa-times');
+    } else {
+      hamburgerIcon.classList.remove('fa-times');
+      hamburgerIcon.classList.add('fa-bars');
+    }
+  }
+
+  // Close menu when a nav link is clicked (mobile view)
+  document.querySelectorAll('.navbar ul li a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        const navMenu = document.querySelector('.navbar ul');
+        const hamburgerIcon = document.querySelector('.hamburger i');
+        navMenu.classList.remove('show');
+        hamburgerIcon.classList.remove('fa-times');
+        hamburgerIcon.classList.add('fa-bars');
+      }
+    });
   });
 </script>
-
-
-  <script>
-  function toggleMenu() {
-  const navMenu = document.querySelector('.navbar ul');
-  const hamburgerIcon = document.querySelector('.hamburger i');
-  
-  // Toggle menu visibility
-  navMenu.classList.toggle('show');
-  
-  // Change hamburger icon between bars and times (X)
-  if (navMenu.classList.contains('show')) {
-    hamburgerIcon.classList.remove('fa-bars');
-    hamburgerIcon.classList.add('fa-times');
-  } else {
-    hamburgerIcon.classList.remove('fa-times');
-    hamburgerIcon.classList.add('fa-bars');
-  }
-}
-
-// Close menu when clicking on a nav link
-document.querySelectorAll('.navbar ul li a').forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth <= 768) { // Only for mobile view
-      const navMenu = document.querySelector('.navbar ul');
-      const hamburgerIcon = document.querySelector('.hamburger i');
-      
-      navMenu.classList.remove('show');
-      hamburgerIcon.classList.remove('fa-times');
-      hamburgerIcon.classList.add('fa-bars');
-    }
-  });
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', function(event) {
-  const navbar = document.querySelector('.navbar');
-  const hamburger = document.querySelector('.hamburger');
-  
-  if (window.innerWidth <= 768) { // Only for mobile view
-    if (!navbar.contains(event.target) && !hamburger.contains(event.target)) {
-      const navMenu = document.querySelector('.navbar ul');
-      const hamburgerIcon = document.querySelector('.hamburger i');
-      
-      navMenu.classList.remove('show');
-      hamburgerIcon.classList.remove('fa-times');
-      hamburgerIcon.classList.add('fa-bars');
-    }
-  }
-});
-  </script>
 
 </body>
 </html>
