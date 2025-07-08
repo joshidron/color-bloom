@@ -1,3 +1,6 @@
+*{
+     font-family: Arial, sans-serif;
+}
 /* Glass Navbar Styles */
 .glass-nav {
     position: fixed;
