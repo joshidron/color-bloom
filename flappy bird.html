@@ -34,7 +34,7 @@
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   width: 70%; /* reduced from 90% */
-  height: auto;
+  height: 500px;
   aspect-ratio: 3 / 4;
   max-width: 320px; /* reduced from 480px */
   margin-top: 2%;
@@ -55,7 +55,7 @@
 
     .controls select, .controls button, .exit-btn {
       background: rgba(255, 255, 255, 0.2);
-      color: #fff;
+      color: #010000;
       border: none;
       border-radius: 12px;
       padding: 8px 12px;
@@ -93,7 +93,7 @@
     /* Desktop & Tablet View Enhancements */
     @media (min-width: 768px) {
   canvas {
-    width: 300px;
+    width: 70%;
     height: 400px;
     margin-top: 3%;
   }
@@ -155,11 +155,12 @@
     const jumpSound = document.getElementById('jumpSound');
     const gameOverSound = document.getElementById('gameOverSound');
 
-    const gameSettings = {
-      easy: { gravity: 0.3, pipeSpeed: 1.5, pipeSpawnInterval: 220, pipeGap: 170 },
-      medium: { gravity: 0.4, pipeSpeed: 2, pipeSpawnInterval: 200, pipeGap: 160 },
-      hard: { gravity: 0.5, pipeSpeed: 2.5, pipeSpawnInterval: 180, pipeGap: 150 }
-    };
+const gameSettings = {
+  easy:   { gravity: 0.3, pipeSpeed: 5.5, pipeSpawnInterval: 90, pipeGap: 170 },
+  medium: { gravity: 0.9, pipeSpeed: 10.2, pipeSpawnInterval: 60, pipeGap: 150 },
+  hard:   { gravity: 1, pipeSpeed: 13.2, pipeSpawnInterval: 40, pipeGap: 130 }
+};
+
 
     const jumpSettings = {
       low: -8,
@@ -183,7 +184,7 @@
 
     function resizeCanvas() {
       const width = Math.min(window.innerWidth, 480);
-      const height = width * 4 / 3;
+      const height = width * 3 / 3;
       canvas.width = width;
       canvas.height = height;
     }
