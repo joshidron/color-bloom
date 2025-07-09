@@ -26,18 +26,20 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding-top: 20px;
     }
 
-    canvas {
-      background: linear-gradient(to bottom right, #e0f7fa, #80deea);
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      width: 90%;
-      height: 80%;
-      aspect-ratio: 3/4;
-      max-width: 480px;
-      margin-top: 14%;
-    }
+   canvas {
+  background: linear-gradient(to bottom right, #e0f7fa, #80deea);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 70%; /* reduced from 90% */
+  height: auto;
+  aspect-ratio: 3 / 4;
+  max-width: 320px; /* reduced from 480px */
+  margin-top: 2%;
+}
+
 
     .controls {
       margin-top: 10px;
@@ -51,7 +53,7 @@
       gap: 10px;
     }
 
-    .controls select, .controls button {
+    .controls select, .controls button, .exit-btn {
       background: rgba(255, 255, 255, 0.2);
       color: #fff;
       border: none;
@@ -59,6 +61,7 @@
       padding: 8px 12px;
       font-size: 1rem;
       backdrop-filter: blur(10px);
+      cursor: pointer;
     }
 
     .stats {
@@ -67,8 +70,7 @@
       left: 10px;
       background: rgba(0, 0, 0, 0.5);
       color: white;
-      padding: 10px 10px 10px 10px;
-      padding-bottom: 5px;
+      padding: 10px;
       border-radius: 10px;
       font-size: 0.9rem;
       z-index: 0;
@@ -81,13 +83,32 @@
       padding: 8px 16px;
       border: none;
       border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
       text-decoration: none;
     }
 
     .exit-btn:hover {
       background-color: #ff1a1a;
+    }
+
+    /* Desktop & Tablet View Enhancements */
+    @media (min-width: 768px) {
+  canvas {
+    width: 300px;
+    height: 400px;
+    margin-top: 3%;
+  }
+
+
+      .controls {
+        font-size: 1.1rem;
+        gap: 20px;
+      }
+
+      .stats {
+        font-size: 1rem;
+        top: 20px;
+        left: 20px;
+      }
     }
   </style>
 </head>
@@ -108,15 +129,11 @@
     </select>
 
     <a href="game.html" class="exit-btn">Exit</a>
-
-
-
   </div>
 
   <div class="game-container">
     <div class="stats" id="stats"></div>
     <canvas id="gameCanvas"></canvas>
-    
   </div>
 
   <div>
@@ -125,7 +142,7 @@
   </div>
 
   <div style="display: none;">
-    <img id="birdGif" src="game/flappy bird/fly-flying.gif">
+    <img id="birdGif" src="fly-flying.gif">
   </div>
 
   <script>
