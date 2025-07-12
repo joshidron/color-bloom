@@ -240,7 +240,7 @@ header {
 }
 
 .speech-bubble {
-    position: fixed;
+    position: absolute; /* Changed from fixed */
     background-color: white;
     border-radius: 20px;
     padding: 15px;
